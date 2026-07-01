@@ -87,6 +87,8 @@ AB_OTA_PARTITIONS += \
     vbmeta_system \
     vendor \
     vendor_boot \
+    odm_dlkm \
+    vbmeta_vendor \
     vendor_dlkm
 
 AB_OTA_POSTINSTALL_CONFIG += \
