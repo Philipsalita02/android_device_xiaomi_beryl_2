@@ -4,7 +4,8 @@ on init
     
     # Give TEE a moment to initialize
     wait /dev/mitee 5
-    
+
+    enable vendor.keymint-mitee
     start vendor.keymint-mitee
     start vendor.gatekeeper_mitee
     start keystore2
