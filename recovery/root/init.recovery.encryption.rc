@@ -6,12 +6,12 @@ on init
     wait /dev/mitee 5
     
     start vendor.keymint-mitee
-    start vendor.gatekeeper-mitee
+    start vendor.gatekeeper_mitee
     start keystore2
 
 on property:twrp.all.users.decrypted=true
     stop keystore2
-    stop vendor.gatekeeper-mitee
+    stop vendor.gatekeeper_mitee
     stop vendor.keymint-mitee
     stop mtk_storageproxyd
     stop tee-supplicant
