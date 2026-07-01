@@ -21,6 +21,10 @@ AB_OTA_PARTITIONS += \
     odm_dlkm \
     vbmeta \
     vbmeta_system \
+    init_boot \
+    recovery \
+    system_dlkm \
+    vendor_boot \
     vbmeta_vendor
       
 BOARD_RAMDISK_USE_LZ4 := true
