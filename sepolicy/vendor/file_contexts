@@ -1,0 +1,3 @@
+/vendor/bin/hw/android\.hardware\.gatekeeper-service\.mitee u:object_r:hal_gatekeeper_default_exec:s0
+/vendor/bin/hw/android\.hardware\.security\.keymint@4\.0-service\.mitee u:object_r:hal_keymint_default_exec:s0
+/vendor/bin/tee-supplicant u:object_r:tee_exec:s0
