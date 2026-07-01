@@ -139,7 +139,6 @@ TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone2/temp"
 TW_BRIGHTNESS_PATH      := "/sys/class/backlight/panel0-backlight/brightness"
 
 # Vendor modules required for the recovery to function properly
-<<<<<<< HEAD
 TW_LOAD_VENDOR_MODULES  += fts_touch_i2c.ko xiaomi_touch.ko panel_event_notifier.ko xiaomi_tp.ko goodix_core.ko focaltech_touch.ko adsp_loader_dlkm.ko camera.ko stm_st54se_gpio.ko
 
 TW_EXCLUDE_DEFAULT_USB_INIT   := true
