@@ -1,2 +1,0 @@
-/system/bin/keystore2    u:object_r:keystore_exec:s0
-/system/bin/gatekeeperd  u:object_r:gatekeeperd_exec:s0
