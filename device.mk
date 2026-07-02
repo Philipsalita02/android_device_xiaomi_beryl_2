@@ -197,4 +197,4 @@ TW_LOAD_VENDOR_BOOT_MODULES := true
  $(DEVICE_PATH)/recovery/root/first_stage_ramdisk/fstab.mt6855:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.mt6855 \
  $(DEVICE_PATH)/recovery/root/first_stage_ramdisk/fstab.emmc:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.emmc
 #
-PRODUCT_EXCLUDE_PACKAGES := android.hardware.health-service.example_recovery
+PRODUCT_PACKAGES_EXCLUDE := android.hardware.health-service.example_recovery

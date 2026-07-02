@@ -187,3 +187,4 @@ TARGET_USES_LOGD               := true
 #RECOVERY_BINARY_SOURCE_FILES   += $(TARGET_OUT_EXECUTABLES)/strace
 
 BOARD_VENDOR_SEPOLICY_DIRS += device/xiaomi/beryl/sepolicy/vendor
+BOARD_SEPOLICY_DIRS += device/xiaomi/beryl/sepolicy/system
