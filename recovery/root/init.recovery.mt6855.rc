@@ -1,8 +1,15 @@
 import /init.recovery.encryption.rc
+
 on init
     setprop sys.usb.configfs 1
     setprop sys.usb.controller "musb-hdrc"
     setprop sys.usb.ffs.aio_compat 0
+    restorecon /vendor/bin/tee-supplicant
+    restorecon /vendor/bin/hw/android.hardware.gatekeeper-service.mitee
+    restorecon /vendor/bin/hw/android.hardware.security.keymint@4.0-service.mitee
+    restorecon /system/bin/keystore2
+    restorecon /system/bin/gatekeeperd
+    restorecon /vendor/bin/init.insmod.sh
 
 on fs && property:ro.debuggable=0
     # distinguish USB shoulde connect or not, i.e. CDP vs SDP
