@@ -1,7 +1,15 @@
 on init
+    # Relabel MITEE/TEE/keystore binaries so init can start them
+    restorecon /vendor/bin/tee-supplicant
+    restorecon /vendor/bin/hw/android.hardware.gatekeeper-service.mitee
+    restorecon /vendor/bin/hw/android.hardware.security.keymint@4.0-service.mitee
+    restorecon /system/bin/keystore2
+    restorecon /system/bin/gatekeeperd
+    restorecon /vendor/bin/init.insmod.sh
+
     start tee-supplicant
     start mtk_storageproxyd
-    
+
     # Give TEE a moment to initialize
     wait /dev/mitee 5
 
