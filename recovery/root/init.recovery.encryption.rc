@@ -1,11 +1,11 @@
 on init
-    # Relabel MITEE/TEE/keystore binaries so init can start them
-    restorecon -F /vendor/bin/tee-supplicant
-    restorecon -F /vendor/bin/hw/android.hardware.gatekeeper-service.mitee
-    restorecon -F /vendor/bin/hw/android.hardware.security.keymint@4.0-service.mitee
-    restorecon -F /system/bin/keystore2
-    restorecon -F /system/bin/gatekeeperd
-    restorecon -F /vendor/bin/init.insmod.sh
+    # Set correct SELinux contexts for MITEE/TEE/keystore binaries
+    chcon u:object_r:vendor_file:s0 /vendor/bin/tee-supplicant
+    chcon u:object_r:vendor_file:s0 /vendor/bin/hw/android.hardware.gatekeeper-service.mitee
+    chcon u:object_r:vendor_file:s0 /vendor/bin/hw/android.hardware.security.keymint@4.0-service.mitee
+    chcon u:object_r:system_file:s0 /system/bin/keystore2
+    chcon u:object_r:system_file:s0 /system/bin/gatekeeperd
+    chcon u:object_r:vendor_file:s0 /vendor/bin/init.insmod.sh
 
     start tee-supplicant
     start mtk_storageproxyd
