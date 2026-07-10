@@ -1,4 +1,5 @@
-# Khargoshx
+# Stable ✨ 
+# this is the most stable branch ever existed ✨
 # Android device tree for Redmi beryl (beryl)
 
 ```
