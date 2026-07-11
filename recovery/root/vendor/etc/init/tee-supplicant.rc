@@ -1,8 +1,30 @@
-service tee-supplicant /vendor/bin/tee-supplicant
-    class core
-    user system
-    group system
-    capabilities SYS_RAWIO
-    seclabel u:r:recovery:s0
-    disabled
-    oneshot
+on init
+    start tee-supplicant
+    chmod 0660 /dev/tee0
+    chmod 0660 /dev/teepriv0
+    chmod 0660 /dev/rpmb0
+    chown system system /dev/tee0
+    chown system system /dev/teepriv0
+    chown system system /dev/rpmb0
+
+    setprop ro.hardware.gatekeeper mitee
+
+    start mtk_storageproxyd
+    
+    # Give TEE a moment to initialize
+    wait /dev/mitee 5
+    start tee-supplicant
+    setprop vendor.teefs_state ready
+
+    enable vendor.keymint-mitee
+    start vendor.keymint-mitee
+    start vendor.gatekeeper-mitee
+    start keystore2
+
+on property:twrp.all.users.decrypted=true
+    stop keystore2
+    stop vendor.gatekeeper-mitee
+    stop vendor.keymint-mitee
+    stop mtk_storageproxyd
+    stop tee-supplicant
+    stop mtk_storageproxyd
