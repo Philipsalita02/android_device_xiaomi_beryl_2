@@ -4,12 +4,11 @@ service tee-supplicant /vendor/bin/tee-supplicant
     user system
     group system secure_element nfc
     capabilities SYS_RAWIO
+    seclabel u:r:recovery:s0
     disabled
-
 
 on fs
     write /proc/bootprof "init tee-supplicant"
-   # set SELinux security contexts on upgrade or policy update
     restorecon_recursive /mnt/vendor/persist
     chmod 0660 /dev/tee0
     chmod 0660 /dev/teepriv0
@@ -24,9 +23,6 @@ on fs
     chown system system /dev/mmcblk0rpmb
     chown system system /dev/0:0:0:49476
     chown system system /dev/ufs-bsg0
-#    enable vendor.keymaster-4-0-mitee
-    enable vendor.keymint-mitee
-    start tee-supplicant
     mkdir /mnt/vendor/persist/data 0755 system system
     mkdir /mnt/vendor/persist/fdsd 0755 system system
     setprop vendor.teefs_state ready

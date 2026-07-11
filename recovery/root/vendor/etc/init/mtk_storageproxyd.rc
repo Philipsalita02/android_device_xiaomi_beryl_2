@@ -1,4 +1,3 @@
-
 # Refer to following files for selinux policy
 #    device/mediatek/sepolicy/base/vendor/file_contexts
 #    device/mediatek/sepolicy/base/vendor/mtk_storageproxyd.te
@@ -6,18 +5,18 @@
 # /vendor/bin/mtk_storageproxyd u:object_r:tee_exec:s0
 # /dev/0\:0\:0\:49476 u:object_r:rpmb_device:s0
 
-# mtk_storageproxyd
-service mtk_storageproxyd /vendor/bin/mtk_storageproxyd -d /dev/trusty-ipc-dev1 \
-          -g /dev/trusty-ipc-dev0 -p /data/vendor/trusty -r /dev/0\:0\:0\:49476
-     class main
-     capabilities DAC_READ_SEARCH SYS_RAWIO
-     priority 10
-     task_profiles ServiceCapacityLow
-     user system
-     group package_info
+service mtk_storageproxyd /vendor/bin/mtk_storageproxyd -d /dev/trusty-ipc-dev1 -g /dev/trusty-ipc-dev0 -p /data/vendor/trusty -r /dev/0\:0\:0\:49476
+    class main
+    capabilities DAC_READ_SEARCH SYS_RAWIO
+    priority 10
+    task_profiles ServiceCapacityLow
+    user system
+    group package_info
+    seclabel u:r:recovery:s0
+    disabled
 
 on post-fs-data
-     mkdir /data/vendor/trusty 0770 system system
+    mkdir /data/vendor/trusty 0770 system system
 
 on init
-     chown system /dev/0:0:0:49476
+    chown system /dev/0:0:0:49476
