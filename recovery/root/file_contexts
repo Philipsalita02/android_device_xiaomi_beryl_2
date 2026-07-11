@@ -1,6 +1,0 @@
-/vendor/bin/tee-supplicant                                                u:object_r:vendor_file:s0
-/vendor/bin/hw/android\.hardware\.gatekeeper-service\.mitee              u:object_r:vendor_file:s0
-/vendor/bin/hw/android\.hardware\.security\.keymint@4\.0-service\.mitee  u:object_r:vendor_file:s0
-/system/bin/keystore2                                                     u:object_r:system_file:s0
-/system/bin/gatekeeperd                                                   u:object_r:system_file:s0
-/vendor/bin/init\.insmod\.sh                                              u:object_r:vendor_file:s0
