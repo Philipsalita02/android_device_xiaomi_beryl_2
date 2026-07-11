@@ -1,4 +1,7 @@
-service vendor.gatekeeper_mitee /vendor/bin/hw/android.hardware.gatekeeper-service.mitee
+service vendor.gatekeeper-mitee /vendor/bin/hw/android.hardware.gatekeeper-service.mitee
     class hal
     user system
     group system
+    seclabel u:r:recovery:s0
+    disabled
+    oneshot
