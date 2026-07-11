@@ -161,7 +161,7 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     android.hardware.keymaster-V4-ndk.so \
     android.hardware.keymaster@4.1
 
-# TWRP - Crypto - Temporarily false for testing Purpose.
+# TWRP - Crypto
  TW_INCLUDE_CRYPTO               := true
  TW_INCLUDE_CRYPTO_FBE           := true
  TW_INCLUDE_FBE_METADATA_DECRYPT := true
