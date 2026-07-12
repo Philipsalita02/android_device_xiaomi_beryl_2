@@ -1,5 +1,4 @@
-# Stable ✨ 
-# this is the most stable branch ever existed ✨
+# TEMP - Temporary branch/secondary test branch.
 # Android device tree for Redmi beryl (beryl)
 
 ```

@@ -1,7 +1,0 @@
-service mtk_storageproxyd /vendor/bin/mtk_storageproxyd
-    class core
-    user system
-    group system
-    seclabel u:r:recovery:s0
-    disabled
-    oneshot
