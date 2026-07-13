@@ -6,6 +6,7 @@ on init
     setprop sys.usb.ffs.aio_compat 0
 
 on fs
+    setprop sys.usb.config adb
     start adbd
 
 on boot
