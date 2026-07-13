@@ -13,6 +13,8 @@ on boot
     chown system system /dev/tee0
     chown system system /dev/teepriv0
     chown system system /dev/rpmb0
+    chown system system /dev/trusty-ipc-dev0
+    chmod 0660 /dev/trusty-ipc-dev0
     export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
     start mtk_storageproxyd
 
