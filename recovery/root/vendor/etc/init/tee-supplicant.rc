@@ -9,7 +9,7 @@ service tee-supplicant /vendor/bin/tee-supplicant
 
 on fs
     write /proc/bootprof "init tee-supplicant"
-    restorecon_recursive /mnt/vendor/persist
+    #restorecon_recursive /mnt/vendor/persist
     chmod 0660 /dev/tee0
     chmod 0660 /dev/teepriv0
     chown system system /dev/tee0

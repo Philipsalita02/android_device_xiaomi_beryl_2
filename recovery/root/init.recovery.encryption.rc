@@ -1,13 +1,14 @@
 on init
     start mtk_storageproxyd
-    wait /dev/mitee 5
     enable tee-supplicant
     start tee-supplicant
+    wait /dev/mitee 5
     enable vendor.keymint-mitee
     start vendor.keymint-mitee
     enable vendor.gatekeeper_mitee
     start vendor.gatekeeper_mitee
     start keystore2
+    start gatekeeperd
 
 on property:twrp.all.users.decrypted=true
     stop keystore2
@@ -15,3 +16,4 @@ on property:twrp.all.users.decrypted=true
     stop vendor.keymint-mitee
     stop tee-supplicant
     stop mtk_storageproxyd
+    stop gatekeeperd
