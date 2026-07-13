@@ -1,5 +1,6 @@
 service gatekeeperd /system/bin/gatekeeperd /data/misc/gatekeeper
     seclabel u:r:recovery:s0
     class early_hal
+    disabled
     user system
     task_profiles ServiceCapacityLow

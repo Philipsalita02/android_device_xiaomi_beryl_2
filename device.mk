@@ -158,10 +158,7 @@ TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
  TW_INCLUDE_FBE_METADATA_DECRYPT := true
  TW_INCLUDE_OMAPI                := true
 
-# keystore2 & crypto 
 PRODUCT_PACKAGES += \
-    android.system.keystore2 \
-    keystore2 
 
 # platform
 PLATFORM_VERSION                := 99.87.36

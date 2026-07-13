@@ -187,3 +187,8 @@ TARGET_USES_LOGD               := true
 #RECOVERY_BINARY_SOURCE_FILES   += $(TARGET_OUT_EXECUTABLES)/strace
 
 BOARD_VENDOR_SEPOLICY_DIRS += device/xiaomi/beryl/sepolicy/vendor
+TW_CRYPTO_USE_SYSTEM_VOLD := true
+TW_CRYPTO_FS_TYPE := f2fs
+TW_CRYPTO_REAL_BLKDEV := /dev/block/by-name/userdata
+TW_CRYPTO_MNT_POINT := /data
+TW_CRYPTO_FS_OPTIONS := inlinecrypt
