@@ -1,17 +1,35 @@
-on init
+on early-init
+    mkdir /mnt/vendor/protect_f 0771 system system
+    mkdir /mnt/vendor/protect_s 0771 system system
+    mkdir /data/vendor/trusty 0770 system system
+
+on boot
+    chmod 0666 /dev/binder
+    chmod 0666 /dev/vndbinder
+    chmod 0666 /dev/hwbinder
+    chmod 0660 /dev/tee0
+    chmod 0660 /dev/teepriv0
+    chmod 0660 /dev/rpmb0
+    chown system system /dev/tee0
+    chown system system /dev/teepriv0
+    chown system system /dev/rpmb0
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
     start mtk_storageproxyd
+
+on property:init.svc.mtk_storageproxyd=running
     enable tee-supplicant
     start tee-supplicant
-    wait /dev/mitee 5
+
+on property:init.svc.tee-supplicant=running
     enable vendor.keymint-mitee
     start vendor.keymint-mitee
+
+on property:init.svc.vendor.keymint-mitee=running
     enable vendor.gatekeeper_mitee
     start vendor.gatekeeper_mitee
-    start keystore2
     start gatekeeperd
 
 on property:twrp.all.users.decrypted=true
-    stop keystore2
     stop vendor.gatekeeper_mitee
     stop vendor.keymint-mitee
     stop tee-supplicant
