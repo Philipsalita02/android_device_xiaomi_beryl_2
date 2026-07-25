@@ -72,9 +72,12 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_DRASTIC_SIZE_REDUCTION=1
    
 	# KernelSU-Next / SukiSu support
-    # export FOX_ENABLE_KERNELSU_NEXT_SUPPORT=1
+     export FOX_ENABLE_KERNELSU_NEXT_SUPPORT=1
     # export FOX_ENABLE_SUKISU_SUPPORT=1
     #Temporary disabled. 
+
+# to fix CANNOT LINK EXECUTIVES in Android 16. 
+    export FOX_ADD_API_V36_PREBUILTS=1
 
 else
     if [ -z "$FOX_BUILD_DEVICE" ] && [ -z "$BASH_SOURCE" ] && [ -z "$ZSH_VERSION" ]; then

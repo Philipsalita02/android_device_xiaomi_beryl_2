@@ -1,29 +1,33 @@
-# Logical Partitions
-system                                                  /system                erofs   ro                                                                           wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
-system                                                  /system                ext4    ro                                                                           wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
-vendor                                                  /vendor                erofs   ro                                                                           wait,slotselect,avb=vbmeta_vendor,logical,first_stage_mount
-vendor                                                  /vendor                ext4    ro                                                                           wait,slotselect,avb=vbmeta_vendor,logical,first_stage_mount
-product                                                 /product               erofs   ro                                                                           wait,slotselect,avb,logical,first_stage_mount
-product                                                 /product               ext4    ro                                                                           wait,slotselect,avb,logical,first_stage_mount
-system_ext                                              /system_ext            erofs   ro                                                                           wait,slotselect,logical
-mi_ext                                                  /mi_ext                erofs   ro                                                                           wait,slotselect,logical
-vendor_dlkm                                             /vendor_dlkm           erofs   ro                                                                           wait,slotselect,logical
-system_dlkm                                             /system_dlkm           erofs   ro                                                                           wait,slotselect,logical
-odm                                                     /odm                   erofs   ro                                                                           wait,slotselect,logical,first_stage_mount
-odm                                                     /odm                   ext4    ro                                                                           wait,slotselect,logical,first_stage_mount
-odm_dlkm                                                /odm_dlkm              ext4    ro                                                                           wait,slotselect,logical
-odm_dlkm                                                /odm_dlkm              erofs   ro                                                                           wait,slotselect,logical
+# Android fstab file for beryl recovery
+# HyperOS 3 / Android 16
 
-# metadata 
-/dev/block/by-name/metadata                            /metadata               ext4                                                                                 noatime,nosuid,nodev,discard wait,check,formattable,first_stage_mount
+# System partitions
+system                                    /system       erofs  ro                                                                    wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+system_ext                                /system_ext   erofs  ro                                                                    wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+vendor                                    /vendor       erofs  ro                                                                    wait,slotselect,avb,logical,first_stage_mount
+product                                   /product      erofs  ro                                                                    wait,slotselect,avb,logical,first_stage_mount
+odm                                       /odm          erofs  ro                                                                    wait,slotselect,avb,logical,first_stage_mount
+vendor_dlkm                               /vendor_dlkm  erofs  ro                                                                    wait,slotselect,avb,logical,first_stage_mount
+odm_dlkm                                  /odm_dlkm     erofs  ro                                                                    wait,slotselect,avb,logical,first_stage_mount
 
-# userdata
-/dev/block/by-name/userdata                            /data                   f2fs                                                                                 gc_merge,atgc,age_extent_cache,noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity
+# Metadata (CRITICAL - holds the metadata encryption master key)
+/dev/block/by-name/metadata               /metadata     f2fs   noatime,nosuid,nodev,discard                                          wait,check,formattable,first_stage_mount
 
+# Userdata - exact flags from real fstab
+/dev/block/by-name/userdata               /data         f2fs   noatime,nosuid,nodev,gc_merge,discard,noflush_merge,fsync_mode=nobarrier,inlinecrypt  wait,check,formattable,quota,latemount,resize,reservedsize=128m,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity
 
-/dev/block/by-name/boot                      /boot                  emmc    defaults                                                                     first_stage_mount,nofail,slotselect
-/dev/block/by-name/vendor_boot               /vendor_boot           emmc    defaults                                                                     first_stage_mount,nofail,slotselect
-/dev/block/by-name/dtbo                      /dtbo                  emmc    defaults                                                                     first_stage_mount,nofail,slotselect
-/dev/block/by-name/vbmeta                    /vbmeta                emmc    defaults                                                                     first_stage_mount,nofail,slotselect
-/dev/block/by-name/persist                   /persist               ext4    noatime,nosuid,nodev,barrier=1                                               wait,formattable
-/dev/block/by-name/misc                      /misc                  emmc    defaults                                                                     defaults
+# Cache
+/dev/block/by-name/rescue                 /cache        ext4   noatime,nosuid,nodev,noauto_da_alloc,discard                          wait,check,formattable
+
+# Protect/NV partitions
+/dev/block/by-name/protect1               /mnt/vendor/protect_f  ext4  noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc      wait,check,formattable
+/dev/block/by-name/protect2               /mnt/vendor/protect_s  ext4  noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc      wait,check,formattable
+
+# Misc
+/dev/block/by-name/misc                   /misc         emmc   defaults                                                              defaults
+
+# SD card
+/devices/platform/soc/11240000.mmc*       auto          auto   defaults                                                              voldmanaged=sdcard1:auto
+
+# USB OTG
+/devices/platform/usb_xhci*               auto          vfat   defaults                                                              voldmanaged=usbotg:auto

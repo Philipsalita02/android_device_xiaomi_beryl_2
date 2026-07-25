@@ -1,11 +1,10 @@
-# Android fstab file specified for beryl.
+# Android fstab file for beryl.
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 #<mnt_point>        <type>    <device>                            <device2>                         <mnt_flags and options>
 /metadata           ext4      /dev/block/by-name/metadata                                           flags=display="metadata";backup=1
 /data               f2fs      /dev/block/by-name/userdata                                           flags=fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption
-
 /cache              ext4      /dev/block/by-name/rescue                                             flags=display="cache";wipeingui;wipeduringfactoryreset
 
 # Boot
@@ -59,5 +58,3 @@
 
 # Removable storage
 /usb_otg            auto      /dev/block/sdd1                                                       flags=display="usb-otg";storage;wipeingui;removable;fsflags=utf8
-# life has it's own way of teaching - let it go 🥀
-#
