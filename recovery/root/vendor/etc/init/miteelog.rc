@@ -1,0 +1,11 @@
+service miteelog /vendor/bin/miteelog
+    class core
+    user system
+    group system
+    disabled
+
+on post-fs
+    mkdir /tmp/mitee 0755 system system
+    mkdir /tmp/thh 0755 system system
+    write /proc/bootprof "init miteelog"
+    start miteelog
