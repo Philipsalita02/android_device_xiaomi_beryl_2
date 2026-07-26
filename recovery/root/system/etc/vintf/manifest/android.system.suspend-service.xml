@@ -1,8 +1,14 @@
 <!--
     Input:
         system/hardware/interfaces/suspend/1.0/default/android.system.suspend-service.xml
+    Fixed: manifest version downgraded from 9.0 to 2.0.
+    Reason: OrangeFox fox_14.1 uses libvintf@8.0 which does not recognize version 9.0.
+    Version 9.0 was introduced in AOSP Android 16 (libvintf@9.0).
+    Version 2.0 is used (not 1.0) because this file contains the max-level attribute
+    on the HIDL hal, which was introduced in manifest schema version 2.0 (Android 9/Pie).
+    libvintf@8.0 (Android 14) fully supports version 2.0.
 -->
-<manifest version="9.0" type="framework">
+<manifest version="2.0" type="framework">
     <hal format="hidl" max-level="6">
         <name>android.system.suspend</name>
         <transport>hwbinder</transport>
